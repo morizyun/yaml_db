@@ -7,7 +7,7 @@ namespace :db do
 
   namespace :data do
     def db_dump_data_file (extension = "yml")
-      "#{dump_dir}/data.#{extension}"
+      "#{Rails.root}/data.#{extension}"
     end
 
 		desc "Dump contents of database to db/data.extension (defaults to yaml)"
