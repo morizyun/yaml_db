@@ -10,3 +10,5 @@ pkg
 tmtags
 *.swp
 .idea
+.rspec
+Gemfile.lock

@@ -1,7 +1,9 @@
 # encoding: utf-8
-
 require 'rubygems'
 require 'bundler'
+require 'rake'
+require 'rspec/core/rake_task'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -9,38 +11,21 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
+
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "fm-yamldb"
-  gem.homepage = "http://github.com/kalabiyau/fm-yamldb"
+  gem.name = "fm_yaml_db"
+  gem.homepage = "http://github.com/kalabiyau/yaml_db"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{fork of a great yaml_db gem}
+  gem.description = %Q{Forked gem from yaml_db - the great DB independent dumper for rails devs}
   gem.email = "skullzeek@gmail.com"
-  gem.authors = ["KalabiYau"]
-  # dependencies defined in Gemfile
+  gem.authors = ["Adam Wiggins","Orion Henry"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
-
-task :default => :test
+task :default => :spec
 
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
@@ -50,4 +35,10 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "fm-yamldb #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = 'spec/*_spec.rb'
+  spec.rspec_opts = ['--backtrace']
 end

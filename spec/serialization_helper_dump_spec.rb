@@ -2,14 +2,16 @@ require File.dirname(__FILE__) + '/base'
 
 describe SerializationHelper::Dump do
 
-	before do
+	before(:each) do
 		silence_warnings { ActiveRecord::Base = mock('ActiveRecord::Base', :null_object => true) }
-		ActiveRecord::Base.stub(:connection).and_return(stub('connection').as_null_object)
-		ActiveRecord::Base.connection.stub!(:tables).and_return([ 'mytable', 'schema_info', 'schema_migrations' ])
+    ActiveRecord::Base.stub(:connection).and_return(stub('connection').as_null_object)
+    ActiveRecord::Base.connection.stub!(:tables).and_return([ 'mytable', 'schema_info', 'schema_migrations' ])
 		ActiveRecord::Base.connection.stub!(:columns).with('mytable').and_return([ mock('a', :name => 'a', :type => :string), mock('b', :name => 'b', :type => :string) ])
 		ActiveRecord::Base.connection.stub!(:select_one).and_return({"count"=>"2"})
 		ActiveRecord::Base.connection.stub!(:select_all).and_return([ { 'a' => 1, 'b' => 2 }, { 'a' => 3, 'b' => 4 } ])
 		SerializationHelper::Utils.stub!(:quote_table).with('mytable').and_return('mytable')
+    SerializationHelper::Dump.stub!(:table_record_count).and_return(2)
+    Arel::SelectManager.any_instance.stub(:to_sql).and_return("SELECT * FROM mytable")
 	end
 
 	before(:each) do   
@@ -30,7 +32,7 @@ describe SerializationHelper::Dump do
 	end
 
 	it "should return all records from the database and return them when there is only 1 page" do
-		SerializationHelper::Dump.each_table_page('mytable') do |records|
+    SerializationHelper::Dump.each_table_page('mytable') do |records|
 			records.should == [ { 'a' => 1, 'b' => 2 }, { 'a' => 3, 'b' => 4 } ]
 		end
 	end

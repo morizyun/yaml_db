@@ -43,7 +43,8 @@ EOYAML
 	end
 
 	it "should return dump the records for a table in yaml to a given io stream" do
-		YamlDb::Dump.dump_table_records(@io, 'mytable')
+    Arel::SelectManager.any_instance.stub(:to_sql).and_return("SELECT * FROM mytable")
+    YamlDb::Dump.dump_table_records(@io, 'mytable')
 		@io.rewind
 		@io.read.should == <<EOYAML
   records: 
