@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "about.yml",
+    "fm_yaml_db.gemspec",
     "init.rb",
     "lib/csv_db.rb",
     "lib/serialization_helper.rb",
