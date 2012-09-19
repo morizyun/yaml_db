@@ -6,6 +6,13 @@ This can be used as a replacement for mysqldump or pg_dump, but only for the dat
 
 Any database that has an ActiveRecord adapter should work.  This gem is now Rails 3 only.  For Rails 2, clone and checkout the Rails2 branch.
 
+#Be awared. This is the fork
+Look at the  [Ludicast](https://github.com/ludicast/yaml_db/) fork and original Adam Wiggins [repo](https://github.com/adamwiggins/yaml_db)(which is not maintained for the moment)
+
+#Travis Build Status
+
+[![Build Status](https://secure.travis-ci.org/kalabiyau/yaml_db.png)](http://travis-ci.org/kalabiyau/yaml_db)
+
 ## Installation
 
 Simply add to your Gemfile:
