@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Wiggins", "Orion Henry"]
-  s.date = "2012-09-19"
+  s.date = "2012-11-20"
   s.description = "Forked gem from yaml_db - the great DB independent dumper for rails devs"
   s.email = "skullzeek@gmail.com"
   s.extra_rdoc_files = [
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".Gemfile.swp",
     ".document",
     ".travis.yml",
     "Gemfile",
@@ -29,7 +28,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "about.yml",
     "fm_yaml_db.gemspec",
-    "init.rb",
     "lib/csv_db.rb",
     "lib/serialization_helper.rb",
     "lib/tasks/yaml_db_tasks.rake",
@@ -46,7 +44,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/kalabiyau/yaml_db"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.24"
   s.summary = "fork of a great yaml_db gem"
 
   if s.respond_to? :specification_version then
