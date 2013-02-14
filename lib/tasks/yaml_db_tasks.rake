@@ -15,7 +15,8 @@ namespace :db do
             format_class = ENV['class'] || "YamlDb::Helper"
             helper = format_class.constantize
             filter = ENV['filter_tables']
-            SerializationHelper::Base.new(helper,filter).dump db_dump_data_file helper.extension
+            filter = ENV['except_tables']
+            SerializationHelper::Base.new(helper, filter, except).dump db_dump_data_file helper.extension
 		end
 
 		desc "Dump contents of database to curr_dir_name/tablename.extension (defaults to yaml)"
