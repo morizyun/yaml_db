@@ -167,7 +167,7 @@ module SerializationHelper
       all_tables = ActiveRecord::Base.connection.tables.reject { |table| ['schema_info', 'schema_migrations'].include?(table) }
 
       selected_tables = filter_table_names ? all_tables.grep(Regexp.new(filter_table_names)) : all_tables
-      selected_tables.select{ |table| !except_table_names.include?(table) } if except_table_names.present?
+      except_table_names.present? ? selected_tables.select{ |table| !except_table_names.include?(table) } : selected_tables
     end
 
     def self.dump_table(io, table)
